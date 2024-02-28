@@ -173,3 +173,46 @@ end
 
 write
 ``` 
+
+
+# Aula
+
+## Part 5
+
+### Router 2
+
+```
+conf t
+int f0/1
+ip add 200.0.0.2 255.255.255.0
+no ip ospf 1 area 0
+no shut
+exit
+ip route 0.0.0.0 0.0.0.0 200.0.0.1
+router ospf 1
+default-information originate always
+exit
+
+ip nat pool MYNATPOOL 100.0.0.1 100.0.0.7 netmask 255.255.255.248
+access-list 2 permit 10.0.0.0 0.255.255.255
+ip nat inside source list 2 pool MYNATPOOL overload
+int f0/0
+ip nat inside
+int f0/1
+ip nat outside
+end
+write
+```
+
+### ISP
+
+```
+conf t
+int f0/1
+ip add 200.0.0.1 255.255.255.0
+no shut
+exit
+ip route 100.0.0.0 255.255.255.248 200.0.0.2
+end
+write
+```
