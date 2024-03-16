@@ -1,8 +1,11 @@
 ## Part 1
+
 Install on Server Vm
 ```
 sudo apt-get install freeradius
 ```
+
+After in each Vm, change the network settings to not attached.
 
 ### SWL3
 
@@ -39,6 +42,7 @@ Go to conections and put manually the ip, mask and gateway, test conectivity
 sudo vim etc/freeradius/3.0/clients.conf
 ```
 
+Insert the following code
 ```
 client 10.0.0.1 {
     secret = radiuskey
@@ -49,9 +53,21 @@ client 10.0.0.1 {
 sudo vim /etc/freeradius/3.0/users
 ```
 
+Insert the following code
 ```
 "labredes" Cleartext-Password := "labcom"
 ```
+
+Confirm that radius.service is `active`.
+```
+systemctl status freeradius
+```
+
+If it isn't start it
+```
+systemctl start freeradius
+```
+
 
 ### SWL3
 
@@ -71,4 +87,6 @@ write
 ### User VM
 
 Go to conections and add to 802.1X security your credentials in this case `labredes` `labcom`
+
+
 
