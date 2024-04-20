@@ -87,7 +87,6 @@ set zone-policy zone DMZ from INSIDE firewall name FROM-INSIDE-TO-DMZ
 commit
 ```
 
-Why before this point i couldnt ping the dmz? from outside?
 ```
 set firewall name FROM-OUTSIDE-TO-DMZ rule 10 description "Accept ICMP Echo Request"
 set firewall name FROM-OUTSIDE-TO-DMZ rule 10 action accept
