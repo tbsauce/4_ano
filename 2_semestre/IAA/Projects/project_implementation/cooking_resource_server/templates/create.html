@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Post</title>
+</head>
+<body>
+  <h1>Create New Post</h1>
+  <form method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br><br>
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="5" cols="30"></textarea><br><br>
+    <button type="submit">Create Post</button> 
+    <input type="checkbox" id="superior" name="superior" value="True">
+    <label for="superior"> Write to Superior </label><br>
+    <h1>DEBUG</h1>
+    <label for="device">Device:</label><br>
+    <select id="device" name="device">
+      <option value="computer" {% if default_device == "computer" %}selected{% endif %}>Computer</option>
+      <option value="phone" {% if default_device == "phone" %}selected{% endif %}>Phone</option>
+      <option value="tablet" {% if default_device == "tablet" %}selected{% endif %}>Tablet</option>
+    </select><br><br>
+    <label for="location">Location:</label><br>
+    <select id="location" name="location">
+      <option value="Portugal" {% if default_location == "Portugal" %}selected{% endif %}>Portugal</option>
+      <option value="Spain" {% if default_location == "Spain" %}selected{% endif %}>Spain</option>
+      <option value="France" {% if default_location == "France" %}selected{% endif %}>France</option>
+    </select><br><br>
+    <label for="ip">IP:</label><br>
+    <input type="text" id="ip" name="ip" value="{{ default_ip }}"><br><br>
+
+  </form>
+
+  
+</body>
+</html>
+

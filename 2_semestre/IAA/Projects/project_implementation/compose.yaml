@@ -1,0 +1,92 @@
+volumes:
+  idp_data:
+  
+  military_forum_data:
+  religious_forum_data:
+  cooking_forum_data:
+  
+  military_resource_data:
+  religious_resource_data:
+  cooking_resource_data:
+  
+  mfa_data:
+
+services:
+
+  idp:
+    build: ./idp
+    ports:
+      - "8080:8080"
+    volumes:
+      - idp_data:/app/data
+    networks:
+      - my-network
+
+  military_forum:
+    build: ./military_forum
+    ports:
+      - "8010:8010"
+    volumes:
+      - military_forum_data:/app/data
+    networks:
+      - my-network
+
+  military_resource_server:
+    build: ./military_resource_server
+    ports:
+      - "8020:8020"
+    volumes:
+      - military_resource_data:/app/data
+    networks:
+      - my-network
+
+  religious_forum:
+    build: ./religious_forum
+    ports:
+      - "8011:8011"
+    volumes:
+      - religious_forum_data:/app/data
+    networks:
+      - my-network
+
+  religious_resource_server:
+    build: ./religious_resource_server
+    ports:
+      - "8021:8021"
+    volumes:
+      - religious_resource_data:/app/data
+    networks:
+      - my-network
+
+  cooking_forum:
+    build: ./cooking_forum
+    ports:
+      - "8012:8012"
+    volumes:
+      - cooking_forum_data:/app/data
+    networks:
+      - my-network
+
+  cooking_resource_server:
+    build: ./cooking_resource_server
+    ports:
+      - "8022:8022"
+    volumes:
+      - cooking_resource_data:/app/data
+    networks:
+      - my-network
+
+  
+
+  mfa:
+    build: ./mfa
+    ports:
+      - "8001:8001"
+    volumes:
+      - mfa_data:/app/data
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

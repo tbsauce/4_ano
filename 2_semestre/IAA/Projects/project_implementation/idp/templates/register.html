@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script>
+        function updateRoleOptions(category) {
+            const roleSelect = document.getElementById('role');
+            let options = [];
+
+            if (category === 'military') {
+                options = [
+                    { value: 'Private', text: 'Private' },
+                    { value: 'Corporal', text: 'Corporal' },
+                    { value: 'Sergeant', text: 'Sergeant' },
+                    { value: 'Major', text: 'Major' }
+                ];
+            } else if (category === 'religious') {
+                options = [
+                    { value: 'Believer', text: 'Believer' },
+                    { value: 'Priest', text: 'Priest' },
+                    { value: 'Bishop', text: 'Bishop' },
+                    { value: 'Pope', text: 'Pope' }
+                ];
+            } else if (category === 'cooking') {
+                options = [
+                    { value: 'Looker', text: 'Looker' },
+                    { value: 'Eater', text: 'Eater' },
+                    { value: 'Cook', text: 'Cook' },
+                    { value: 'Admin', text: 'Admin' }
+                ];
+            }
+
+            // Clear existing options
+            roleSelect.innerHTML = '';
+
+            // Populate new options
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.value;
+                opt.text = option.text;
+                roleSelect.add(opt);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <h1>DEBUG</h1>
+        <button type="button" onclick="updateRoleOptions('military')">Military</button>
+        <button type="button" onclick="updateRoleOptions('religious')">Religious</button>
+        <button type="button" onclick="updateRoleOptions('cooking')">Cooking</button><br><br>
+
+        <label for="role">Role:</label><br>
+        <select id="role" name="role">
+            <!-- Options will be populated based on button clicks -->
+        </select><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

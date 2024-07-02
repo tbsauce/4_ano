@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum Posts</title>
+</head>
+<body>
+
+<form method="POST">
+  <h1>Forum Posts</h1>
+  {% if posts %}
+    {% for post in posts %}
+        <h1>{{ post[3] }}</h1>
+        <p> User {{ post[1] }} : {{ post[2] }}</p>
+    {% endfor %}
+  {% else %}
+    <p>No posts found.</p>
+  {% endif %}
+  <button type="submit" >Create New Post</button>
+  <br>
+  <a href="{{ url_for('login') }}">Login</a>
+  <br>
+  <a href="{{ url_for('change_pass') }}">ChangePass</a>
+
+    <h1>DEBUG</h1>
+    <label for="device">Device:</label><br>
+    <select id="device" name="device">
+      <option value="computer" {% if default_device == "computer" %}selected{% endif %}>Computer</option>
+      <option value="phone" {% if default_device == "phone" %}selected{% endif %}>Phone</option>
+      <option value="tablet" {% if default_device == "tablet" %}selected{% endif %}>Tablet</option>
+    </select><br><br>
+    <label for="location">Location:</label><br>
+    <select id="location" name="location">
+      <option value="Portugal" {% if default_location == "Portugal" %}selected{% endif %}>Portugal</option>
+      <option value="Spain" {% if default_location == "Spain" %}selected{% endif %}>Spain</option>
+      <option value="France" {% if default_location == "France" %}selected{% endif %}>France</option>
+    </select><br><br>
+    <label for="ip">IP:</label><br>
+    <input type="text" id="ip" name="ip" value="{{ default_ip }}"><br><br>
+    
+  </form>
+  
+  </body>
+</html>
+
